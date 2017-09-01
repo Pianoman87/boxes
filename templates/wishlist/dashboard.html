@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <header>
+            <h2>Welcome {{ user.name }}</h2>
+            <p><a href="/wishlist/logout">Logout</a>   |   <a href="/wishlist/add">Add Item</a></p>
+        </header><br><br>
+        <h3>Your Wish List Items:</h3>
+              <table border="1">
+                  <tr>
+                      <th>Item</th>
+                      <th>Added by</th>
+                      <th>Date Added</th>
+                      <th>Action</th>
+                  </tr>
+                {% for x in my_item %}
+                <tr>
+                    <td><a href="/wishlist/{{x.id}}/item">{{x.name}}</a></td>
+                    <td>{{x.users.name}}</td>
+                    <td>{{x.created_at}}</td>
+
+                    <td><a href="/wishlist/{{x.id}}/destroy">Delete</a></td>
+                </tr>
+                {%endfor%}
+                {% for z in x %}
+                <tr>
+                    <td><a href="/wishlist/{{z.id}}/item">{{z.name}}</a></td>
+                    <td>{{ z.users.name }}</td>
+                    <td>{{  z.created_at }}</td>
+                    <td><a href="/wishlist/{{z.id}}/remove">Remove From My List</a></td>
+                </tr>
+                {%endfor%}
+              </table>
+          <br><br>
+
+      <h3>Other User's Wish List</h3>
+          <table border="1">
+              <tr>
+                  <th>Item</th>
+                  <th>Added by</th>
+                  <th>Date Added</th>
+                  <th>Action</th>
+              </tr>
+            {% for x in item %}
+            <tr>
+                <td><a href="/wishlist/{{x.id}}/item">{{x.name}}</a></td>
+                <td>{{x.users.name}}</td>
+                <td>{{x.created_at}}</td>
+                <td><a href="/wishlist/{{x.id}}/include">Add to my Wish List</a></td>
+            </tr>
+            {%endfor%}
+            {{users_wish.item.name}}
+
+{% for z in x %}
+{{ z.name }}
+{%endfor%}
+
+  </body>
+</html>
